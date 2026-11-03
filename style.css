@@ -1,0 +1,710 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f2f6ff;
+    margin: 0;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+.container {
+    width: 380px;
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    text-align: center;
+}
+
+h1 { 
+    font-size: 26px; 
+    margin-bottom: 5px; 
+}
+
+.tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ddd;
+}
+
+.tab {
+    flex: 1;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #555;
+}
+
+.tab.active {
+    color: #4a57ff;
+    border-bottom: 3px solid #4a57ff;
+}
+
+.contador {
+    font-size: 60px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.faltam {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+    font-weight: bold;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 14px;
+    background: #dedede;
+    border-radius: 10px;
+    margin: 15px 0;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #4a57ff;
+    border-radius: 10px;
+    transition: width 0.3s;
+    width: 0%;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.btn-add    { background: #ff6f61; color: white; }
+.btn-save   { background: #3cb371; color: white; }
+.btn-reset  { background: #ffffff; border: 2px solid #555; }
+.btn-treino { background: #4a57ff; color: white; }
+.btn-inj    { background: #c23eff; color: white; }
+
+.historic-box {
+    text-align: left;
+    margin-top: 25px;
+    padding: 15px;
+    background: #fafafa;
+    border-radius: 10px;
+    max-height: 180px;
+    overflow-y: auto;
+    border: 1px solid #e3e3e3;
+}
+
+.registro-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.registro-item button {
+    width: auto;
+    padding: 5px 10px;
+    margin-top: 0;
+    font-size: 12px;
+    border-radius: 6px;
+    background: #ff4f4f;
+    color: white;
+}
+
+.tema1 { background: linear-gradient(135deg,#ffecd2,#fcb69f); }
+.tema2 { background: linear-gradient(135deg,#d9a7c7,#fffcdc); }
+.tema3 { background: linear-gradient(135deg,#a1c4fd,#c2e9fb); }
+.tema4 { background: linear-gradient(135deg,#f6d365,#fda085); }
+.tema5 { background: linear-gradient(135deg,#84fab0,#8fd3f4); }
+
+
+/* Organização dos campos da avaliação corporal */
+.avaliacao-corporal {
+    text-align: left;
+}
+
+.avaliacao-corporal .campos-avaliacao {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.avaliacao-corporal .campo-avaliacao {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    margin-bottom: 14px;
+    gap: 6px;
+    box-sizing: border-box;
+}
+
+.avaliacao-corporal .campo-avaliacao label {
+    display: block;
+    width: 100%;
+    text-align: left;
+    font-weight: 600;
+}
+
+.avaliacao-corporal .campo-avaliacao input {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    margin: 0;
+    border: 1px solid #bbb;
+    border-radius: 8px;
+    background: white;
+    font-size: 16px;
+}
+
+.avaliacao-corporal h2,
+.avaliacao-corporal h3 {
+    text-align: left;
+}
+
+/* =====================================
+   PAINEL FITNESS — VISUAL MODERNO
+===================================== */
+
+:root {
+  --cor-principal: #252445;
+  --cor-lilas: #8B7CF6;
+  --cor-lavanda: #E8E5FF;
+  --cor-fundo: #F5F6FA;
+  --cor-branco: #FFFFFF;
+  --cor-texto: #29283D;
+  --cor-borda: #E5E5EF;
+  --sombra-card: 0 4px 18px rgba(37, 36, 69, 0.08);
+}
+
+body {
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.container {
+  background: var(--cor-branco);
+  border-radius: 22px;
+  box-shadow: var(--sombra-card);
+}
+
+h1 {
+  color: var(--cor-principal);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+h2, h3 {
+  color: var(--cor-principal);
+}
+
+.tabs {
+  border-bottom: 2px solid var(--cor-borda);
+  gap: 4px;
+}
+
+.tab {
+  color: #77758D;
+  border-radius: 10px 10px 0 0;
+  transition: background 0.2s, color 0.2s;
+}
+
+.tab:hover {
+  background: var(--cor-lavanda);
+  color: var(--cor-principal);
+}
+
+.tab.active {
+  color: var(--cor-principal);
+  border-bottom: 3px solid var(--cor-lilas);
+  background: #F8F7FF;
+}
+
+button {
+  transition: transform 0.15s, filter 0.15s;
+}
+
+button:hover {
+  filter: brightness(0.96);
+  transform: translateY(-1px);
+}
+
+.btn-save,
+.btn-treino,
+.btn-add,
+.btn-inj {
+  border-radius: 12px;
+}
+
+.btn-save {
+  background: #7465E8;
+}
+
+.btn-treino {
+  background: var(--cor-principal);
+}
+
+.btn-add {
+  background: var(--cor-lilas);
+}
+
+.btn-inj {
+  background: #8B5CF6;
+}
+
+input, select {
+  border: 1px solid var(--cor-borda);
+  border-radius: 10px;
+  font: inherit;
+}
+
+input:focus, select:focus {
+  outline: 2px solid var(--cor-lilas);
+  outline-offset: 1px;
+}
+
+.historic-box {
+  background: #FAFAFE;
+  border-color: var(--cor-borda);
+  border-radius: 14px;
+}
+
+.avaliacao-corporal {
+  background: var(--cor-branco);
+}
+
+.avaliacao-corporal h2 {
+  border-bottom: 2px solid var(--cor-lavanda);
+  padding-bottom: 10px;
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px 0;
+  }
+
+  .container {
+    width: calc(100% - 20px);
+    padding: 16px;
+    box-sizing: border-box;
+    border-radius: 16px;
+  }
+
+  h1 {
+    font-size: 23px;
+  }
+
+  .tab {
+    padding: 10px 4px;
+    font-size: 12px;
+  }
+
+  button {
+    font-size: 16px;
+  }
+}
+
+/* =====================================
+   MENU LATERAL — PAINEL FITNESS
+===================================== */
+
+#appContainer {
+  width: min(1180px, calc(100% - 32px));
+  max-width: 1180px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 245px minmax(0, 1fr);
+  text-align: left;
+  overflow: hidden;
+  border-radius: 22px;
+  box-sizing: border-box;
+}
+
+.menu-lateral {
+  background: #252445;
+  color: #FFFFFF;
+  padding: 28px 16px 20px;
+  display: flex;
+  flex-direction: column;
+  min-height: 650px;
+  box-sizing: border-box;
+}
+
+.marca-painel {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 0 8px 30px;
+}
+
+.marca-icone {
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+  display: grid;
+  place-items: center;
+  background: #8B7CF6;
+  color: #FFFFFF;
+  font-size: 25px;
+}
+
+.marca-painel strong {
+  display: block;
+  font-size: 17px;
+}
+
+.marca-painel small {
+  display: block;
+  margin-top: 5px;
+  color: #C9C7E4;
+  font-size: 11px;
+}
+
+.menu-titulo {
+  margin: 0 8px 12px;
+  color: #A6A3CB;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 1.2px;
+}
+
+.menu-navegacao {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.item-menu {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  padding: 13px 12px;
+  border-radius: 11px;
+  background: transparent;
+  color: #DAD9ED;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 600;
+  border: 0;
+}
+
+.item-menu:hover {
+  background: #353353;
+  color: #FFFFFF;
+}
+
+.item-menu.active {
+  background: #8B7CF6;
+  color: #FFFFFF;
+}
+
+.icone-menu {
+  width: 22px;
+  text-align: center;
+  font-size: 19px;
+}
+
+.menu-rodape {
+  margin-top: auto;
+  padding: 25px 8px 0;
+  color: #C9C7E4;
+  font-size: 12px;
+}
+
+.menu-rodape span {
+  color: #B6ACFF;
+  margin-right: 5px;
+}
+
+.area-principal {
+  min-width: 0;
+  padding: 28px;
+  box-sizing: border-box;
+  background: #F5F6FA;
+}
+
+.cabecalho-painel {
+  background: #FFFFFF;
+  border: 1px solid #E8E7F0;
+  border-radius: 16px;
+  padding: 20px 22px;
+  margin-bottom: 24px;
+}
+
+.subtitulo-painel {
+  margin: 0 0 7px;
+  color: #8B7CF6;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.cabecalho-painel h1 {
+  margin: 0;
+  font-size: 25px;
+}
+
+.area-principal > div[id^="aba"] {
+  background: #FFFFFF;
+  border: 1px solid #E8E7F0;
+  border-radius: 16px;
+  padding: 22px;
+  box-sizing: border-box;
+}
+
+.area-principal .tabs {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  #appContainer {
+    width: calc(100% - 20px);
+    grid-template-columns: 1fr;
+    margin: 0 auto;
+  }
+
+  .menu-lateral {
+    min-height: auto;
+    padding: 16px;
+  }
+
+  .marca-painel {
+    padding-bottom: 16px;
+  }
+
+  .menu-titulo,
+  .menu-rodape {
+    display: none;
+  }
+
+  .menu-navegacao {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .item-menu {
+    width: auto;
+    flex: 1 1 105px;
+    justify-content: center;
+    padding: 10px 7px;
+    font-size: 12px;
+  }
+
+  .icone-menu {
+    width: auto;
+  }
+
+  .area-principal {
+    padding: 14px;
+  }
+
+  .cabecalho-painel {
+    padding: 17px;
+    margin-bottom: 14px;
+  }
+
+  .cabecalho-painel h1 {
+    font-size: 22px;
+  }
+
+  .area-principal > div[id^="aba"] {
+    padding: 15px;
+  }
+}
+
+/* MEDIDAS CORPORAIS — organização dos campos */
+#abaMedidas .card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#abaMedidas .card label {
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+    font-weight: 600;
+}
+
+#abaMedidas .card input,
+#abaMedidas .card select {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 0 8px;
+}
+
+#abaMedidas .card h3 {
+    margin-bottom: 12px;
+}
+
+#abaMedidas .card button {
+    width: 100%;
+    margin-top: 12px;
+}
+
+/* CORREÇÃO PARA CELULAR — MEDIDAS CORPORAIS */
+#abaMedidas .card {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#abaMedidas .card label {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box;
+}
+
+#abaMedidas .card input,
+#abaMedidas .card select {
+    display: block !important;
+    float: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    margin: 0 0 12px 0 !important;
+}
+
+#abaMedidas .card button {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+@media (max-width: 768px) {
+    #abaMedidas {
+        width: 100%;
+        min-width: 0;
+    }
+
+    #abaMedidas .card {
+        padding: 16px;
+    }
+
+    #abaMedidas .card label,
+    #abaMedidas .card input,
+    #abaMedidas .card select {
+        flex: 0 0 100% !important;
+    }
+}
+
+    #abaMedidas .card label,
+    #abaMedidas .card input,
+    #abaMedidas .card select {
+        position: static !important;
+        flex-basis: auto !important;
+        align-self: stretch !important;
+    }
+}
+
+
+/* ==========================================
+   CATÁLOGO DE TREINOS — PAINEL FITNESS
+========================================== */
+
+.catalogo-treinos {
+  margin-bottom: 24px;
+  padding: 20px;
+  border: 1px solid #E5E5EF;
+  border-radius: 16px;
+  background: #FFFFFF;
+  text-align: left;
+}
+
+.catalogo-cabecalho h2 {
+  margin: 5px 0 8px;
+}
+
+.catalogo-etiqueta {
+  color: #8B7CF6;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.catalogo-treinos label {
+  display: block;
+  margin: 14px 0 6px;
+  font-weight: 600;
+}
+
+.catalogo-treinos input,
+.catalogo-treinos select,
+.catalogo-treinos textarea {
+  width: 100%;
+  max-width: 100%;
+  padding: 11px;
+  border: 1px solid #E5E5EF;
+  border-radius: 9px;
+  box-sizing: border-box;
+  font: inherit;
+  background: #FFFFFF;
+}
+
+.catalogo-treinos textarea {
+  resize: vertical;
+}
+
+.catalogo-detalhes {
+  margin-top: 16px;
+  padding: 15px;
+  border-radius: 12px;
+  background: #F8F7FF;
+  overflow-wrap: anywhere;
+}
+
+.catalogo-detalhes li {
+  margin: 8px 0;
+}
+
+.catalogo-botao {
+  background: #252445;
+  color: #FFFFFF;
+  margin-top: 12px;
+}
+
+.catalogo-botao.secundario {
+  background: #7465E8;
+}
+
+.catalogo-item {
+  padding: 12px 0;
+  border-bottom: 1px solid #E5E5EF;
+}
+
+.catalogo-item button {
+  width: auto;
+  margin: 8px 8px 0 0;
+  padding: 9px 12px;
+  font-size: 13px;
+  background: #E8E5FF;
+  color: #252445;
+}
+
+.catalogo-mensagem {
+  min-height: 20px;
+  color: #5145CD;
+  font-weight: 600;
+}
+
+@media (max-width: 480px) {
+  .catalogo-treinos {
+    padding: 14px;
+  }
+}

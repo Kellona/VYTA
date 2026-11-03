@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel Fitness Completo</title>
+    
+    <!-- CSS Externo -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Chart.js para os gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    
+<div class="container" id="appContainer">
+
+    <aside class="menu-lateral">
+        <div class="marca-painel">
+            <div class="marca-icone">✦</div>
+            <div>
+                <strong>Painel Fitness</strong>
+                <small>Sua evolução, seu ritmo</small>
+            </div>
+        </div>
+
+        <p class="menu-titulo">MENU PRINCIPAL</p>
+
+        <nav class="menu-navegacao">
+            
+<button type="button" class="item-menu active"
+    onclick="abrirAba('inicio')" id="tabInicio">
+    <span class="icone-menu">⌂</span>
+    <span>Visão geral</span>
+</button>
+
+            <button type="button" class="item-menu active"
+                onclick="abrirAba('treinos')" id="tabTreinos">
+                <span class="icone-menu">⌂</span>
+                <span>Treinos</span>
+            </button>
+
+            <button type="button" class="item-menu"
+                onclick="abrirAba('peso')" id="tabPeso">
+                <span class="icone-menu">⚖</span>
+                <span>Peso & IMC</span>
+            </button>
+
+            <button type="button" class="item-menu"
+                onclick="abrirAba('composicao')" id="tabComposicao">
+                <span class="icone-menu">◉</span>
+                <span>Composição corporal</span>
+            </button>
+
+<button type="button" class="item-menu"
+    onclick="abrirAba('medidas')" id="tabMedidas">
+    <span class="icone-menu">📏</span>
+    <span>Medidas corporais</span>
+</button>
+
+            <button type="button" class="item-menu"
+                onclick="abrirAba('inj')" id="tabInj">
+                <span class="icone-menu">♡</span>
+                <span>Injeções</span>
+            </button>
+
+            <button type="button" class="item-menu"
+                onclick="abrirAba('nuvem')" id="tabNuvem">
+                <span class="icone-menu">☁</span>
+                <span>Nuvem</span>
+            </button>
+        </nav>
+
+        <div class="menu-rodape">
+            <span>✦</span> Um passo de cada vez.
+        </div>
+    </aside>
+
+    <main class="area-principal">
+        <header class="cabecalho-painel">
+            <div>
+                <p class="subtitulo-painel">SEU ESPAÇO DE SAÚDE E BEM-ESTAR</p>
+                <h1>Seu Painel Fitness</h1>
+            </div>
+        </header>
+
+<!-- VISÃO GERAL -->
+<div id="abaInicio" style="display:none;">
+    <h2>Olá! 👋</h2>
+    <p>Acompanhe sua evolução, um passo de cada vez.</p>
+
+    <div class="resumo-grid">
+        <div class="resumo-card">
+            <span class="resumo-icone">🏋️</span>
+            <p>Treinos realizados</p>
+            <strong id="resumoTreinos">—</strong>
+        </div>
+
+        <div class="resumo-card">
+            <span class="resumo-icone">⚖️</span>
+            <p>Peso mais recente</p>
+            <strong id="resumoPeso">—</strong>
+        </div>
+
+        <div class="resumo-card">
+            <span class="resumo-icone">📊</span>
+            <p>Avaliações corporais</p>
+            <strong id="resumoAvaliacoes">—</strong>
+        </div>
+
+        <div class="resumo-card">
+            <span class="resumo-icone">💜</span>
+            <p>Próxima aplicação</p>
+            <strong id="resumoAplicacao">—</strong>
+        </div>
+    </div>
+
+    <p class="resumo-observacao">
+        Seus resultados são construídos um dia de cada vez.
+    </p>
+</div>
+<!-- FIM DA VISÃO GERAL -->
+
+        <!-- ABA TREINOS -->
+        <div id="abaTreinos" style="display:none;">
+            <div class="contador" id="contador">0</div>
+            <div class="faltam" id="faltamDias"></div>
+            <p>de 200 dias</p>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <button class="btn-add" onclick="abrirRegistroData()">Registrar Treino</button>
+            <button class="btn-save" onclick="salvarRegistro()">Salvar Hoje</button>
+            <button class="btn-reset" onclick="resetar()">Resetar</button>
+            <button class="btn-treino" onclick="mostrarTreinoDia()">Ver Treino de Hoje</button>
+
+            <div id="boxTreino" style="display:none; background:#eef3ff; padding:20px; margin-top:20px; border-radius:12px; text-align:left;"></div>
+            <div class="historic-box" id="historicoLista"></div>
+
+            <h2>Gráfico Mensal</h2>
+            <canvas id="graficoMensal" width="350" height="200"></canvas>
+        </div>
+
+        <!-- ABA PESO -->
+        <div id="abaPeso" style="display:none;">
+            <h2>Registrar Peso</h2>
+            <input type="date" id="dataPeso" style="width:100%; padding:10px; box-sizing: border-box;">
+            <input type="number" id="pesoInput" placeholder="Peso (kg)" style="width:100%; padding:10px; margin-top:10px; box-sizing: border-box;">
+
+            <button class="btn-save" onclick="registrarPeso()">Salvar Peso</button>
+
+            <h3 style="margin-top:20px;">Histórico</h3>
+            <div class="historic-box" id="listaPeso"></div>
+
+            <h2>Evolução do Peso</h2>
+            <canvas id="graficoPeso" width="350" height="200"></canvas>
+              
+        </div>
+<!-- ABA COMPOSIÇÃO CORPORAL -->
+<div id="abaComposicao" style="display:none;">
+<!-- ==========================================
+     AVALIAÇÃO CORPORAL - 7 DOBRAS CUTÂNEAS
+=========================================== -->
+<section id="secaoAvaliacaoCorporal" class="avaliacao-corporal">
+
+
+    <h2>📏 Avaliação Corporal</h2>
+    <p>
+        Registre suas medidas para acompanhar a evolução da composição corporal.
+        Protocolo Jackson-Pollock de 7 dobras para mulheres.
+    </p>
+
+
+    <h3>Medidas das dobras cutâneas (mm)</h3>
+
+
+<!-- DADOS DA AVALIAÇÃO -->
+<div class="campos-avaliacao">
+
+
+    <div class="campo-avaliacao">
+        <label for="dataAvaliacao">Data da avaliação</label>
+        <input type="date" id="dataAvaliacao">
+    </div>
+
+
+    <div class="campo-avaliacao">
+        <label for="idadeAvaliacao">Idade (anos)</label>
+        <input type="number" id="idadeAvaliacao"
+               min="18" max="100" placeholder="Ex.: 45">
+    </div>
+<div class="campo-avaliacao">
+    <label for="sexoAvaliacao">Sexo para cálculo da gordura corporal</label>
+    <select id="sexoAvaliacao">
+        <option value="feminino">Feminino</option>
+        <option value="masculino">Masculino</option>
+    </select>
+</div>
+
+    <div class="campo-avaliacao">
+        <label for="pesoAvaliacao">Peso (kg)</label>
+        <input type="number" id="pesoAvaliacao"
+               min="1" step="0.1" placeholder="Ex.: 90,0">
+    </div>
+
+
+</div>
+
+
+<h3>Medidas das dobras cutâneas (mm)</h3>
+
+
+<div class="campo-avaliacao">
+    <label for="dobraPeitoral">Peitoral (mm)</label>
+    <input type="number" id="dobraPeitoral"
+           min="0" step="0.1" placeholder="Medida em mm">
+</div>
+
+
+<div class="campo-avaliacao">
+    <label for="dobraAxilar">Axilar média (mm)</label>
+    <input type="number" id="dobraAxilar"
+           min="0" step="0.1" placeholder="Medida em mm">
+</div>
+
+
+<div class="campo-avaliacao">
+    <label for="dobraTriceps">Tríceps (mm)</label>
+    <input type="number" id="dobraTriceps"
+           min="0" step="0.1" placeholder="Medida em mm">
+</div>
+
+
+<div class="campo-avaliacao">
+    <label for="dobraSubescapular">Subescapular (mm)</label>
+    <input type="number" id="dobraSubescapular"
+           min="0" step="0.1" placeholder="Medida em mm">
+</div>
+
+
+<div class="campo-avaliacao">
+    <label for="dobraAbdominal">Abdominal (mm)</label>
+    <input type="number" id="dobraAbdominal"
+           min="0" step="0.1" placeholder="Medida em mm">
+</div>
+
+
+<div class="campo-avaliacao">
+    <label for="dobraSuprailiaca">Supra-ilíaca (mm)</label>
+    <input type="number" id="dobraSuprailiaca"
+           min="0" step="0.1" placeholder="Medida em mm">
+</div>
+
+
+<div class="campo-avaliacao">
+    <label for="dobraCoxa">Coxa (mm)</label>
+    <input type="number" id="dobraCoxa"
+           min="0" step="0.1" placeholder="Medida em mm">
+</div>
+
+
+    <button class="btn-save" onclick="salvarAvaliacaoCorporal()">
+        💾 Salvar avaliação corporal
+    </button>
+
+
+    <div id="resultadoAvaliacao" aria-live="polite"></div>
+
+
+    <h3>📈 Evolução da massa magra (kg)</h3>
+    <canvas id="graficoMassaMagra"></canvas>
+
+
+    <h3>📉 Evolução do percentual de gordura (%)</h3>
+    <canvas id="graficoPercentualGordura"></canvas>
+
+
+    <h3>📊 Relatório comparativo</h3>
+    <p>
+        Compare sua primeira avaliação com a avaliação mais recente.
+    </p>
+
+
+    <button class="btn-treino" onclick="gerarRelatorioCorporal()">
+        Gerar relatório comparativo
+    </button>
+
+
+    <button class="btn-add" onclick="imprimirRelatorioCorporal()">
+        🖨️ Imprimir / salvar em PDF
+    </button>
+
+
+    <div id="relatorioCorporal" aria-live="polite"></div>
+
+
+    <h3>Histórico das avaliações</h3>
+    <div id="historicoAvaliacaoCorporal" class="historic-box"></div>
+
+
+</section>
+<!-- FIM DA AVALIAÇÃO CORPORAL -->
+
+    </div>
+    
+<!-- MEDIDAS CORPORAIS -->
+<div id="abaMedidas" style="display:none;">
+
+    <h2>📏 Medidas corporais</h2>
+    <p>Acompanhe sua evolução em centímetros.</p>
+
+    <div class="card">
+        <h3>Registrar medidas</h3>
+
+        <label for="dataMedidas">Data da avaliação</label>
+        <input type="date" id="dataMedidas">
+
+        <label for="medidaCintura">Cintura (cm)</label>
+        <input type="number" id="medidaCintura"
+            min="0" step="0.1" placeholder="Ex.: 85,5">
+
+        <label for="medidaAbdomen">Abdômen (cm)</label>
+        <input type="number" id="medidaAbdomen"
+            min="0" step="0.1" placeholder="Ex.: 92">
+
+        <label for="medidaQuadril">Quadril (cm)</label>
+        <input type="number" id="medidaQuadril"
+            min="0" step="0.1" placeholder="Ex.: 105">
+
+        <label for="medidaTorax">Peito / tórax (cm)</label>
+        <input type="number" id="medidaTorax"
+            min="0" step="0.1" placeholder="Ex.: 98">
+
+        <label for="medidaBracoDireito">Braço direito (cm)</label>
+        <input type="number" id="medidaBracoDireito"
+            min="0" step="0.1" placeholder="Ex.: 32">
+
+        <label for="medidaBracoEsquerdo">Braço esquerdo (cm)</label>
+        <input type="number" id="medidaBracoEsquerdo"
+            min="0" step="0.1" placeholder="Ex.: 31,5">
+
+        <label for="medidaCoxaDireita">Coxa direita (cm)</label>
+        <input type="number" id="medidaCoxaDireita"
+            min="0" step="0.1" placeholder="Ex.: 60">
+
+        <label for="medidaCoxaEsquerda">Coxa esquerda (cm)</label>
+        <input type="number" id="medidaCoxaEsquerda"
+            min="0" step="0.1" placeholder="Ex.: 59,5">
+
+        <label for="medidaPanturrilhaDireita">Panturrilha direita (cm)</label>
+        <input type="number" id="medidaPanturrilhaDireita"
+            min="0" step="0.1" placeholder="Ex.: 38">
+
+        <label for="medidaPanturrilhaEsquerda">Panturrilha esquerda (cm)</label>
+        <input type="number" id="medidaPanturrilhaEsquerda"
+            min="0" step="0.1" placeholder="Ex.: 37,5">
+
+        <button type="button" onclick="salvarMedidasCorporais()">
+            Salvar medidas
+        </button>
+    </div>
+
+    <div class="card">
+        <h3>📈 Evolução das medidas</h3>
+
+        <label for="seletorMedida">Escolha a medida para visualizar</label>
+        <select id="seletorMedida">
+            <option value="cintura">Cintura</option>
+            <option value="abdomen">Abdômen</option>
+            <option value="quadril">Quadril</option>
+            <option value="torax">Peito / tórax</option>
+            <option value="bracoDireito">Braço direito</option>
+            <option value="bracoEsquerdo">Braço esquerdo</option>
+            <option value="coxaDireita">Coxa direita</option>
+            <option value="coxaEsquerda">Coxa esquerda</option>
+            <option value="panturrilhaDireita">Panturrilha direita</option>
+            <option value="panturrilhaEsquerda">Panturrilha esquerda</option>
+        </select>
+
+        <div id="resumoEvolucaoMedida"></div>
+        <canvas id="graficoMedidas"></canvas>
+    </div>
+
+    <div class="card">
+        <h3>📋 Histórico de medições</h3>
+        <div id="historicoMedidas"></div>
+    </div>
+
+</div>
+<!-- FIM DAS MEDIDAS CORPORAIS -->
+
+        <!-- ABA INJEÇÕES -->
+        <div id="abaInj" style="display:none;">
+            <h2>💉 Aplicações</h2>
+
+            <label>Data da aplicação</label>
+            <input type="date" id="dataInjecao" style="width:100%;padding:10px;margin-bottom:15px;">
+
+            <label>Dose</label>
+            <select id="doseInjecao" style="width:100%;padding:10px;margin-bottom:15px;">
+                <option value="2,5 mg">2,5 mg</option>
+                <option value="5 mg">5 mg</option>
+                <option value="7,5 mg">7,5 mg</option>
+                <option value="10 mg">10 mg</option>
+                <option value="12,5 mg">12,5 mg</option>
+                <option value="15 mg">15 mg</option>
+            </select>
+
+            <button class="btn-inj" onclick="registrarInjecao()">
+                💾 Salvar Aplicação
+            </button>
+
+            <div id="proximaAplicacao" style="margin-top:20px; padding:15px; background:#eef3ff; border-radius:10px; font-weight:bold;">
+            </div>
+
+            <h3 style="margin-top:20px;">Histórico</h3>
+            <div class="historic-box" id="listaInjecoes"></div>
+        </div>
+
+        <!-- ABA NUVEM -->
+        <div id="abaNuvem" style="display:none;">
+            <h2>☁️ Sincronização GitHub</h2>
+            <p style="font-size: 13px; color: #666;">Configure para salvar seus dados na nuvem e acessar em qualquer dispositivo.</p>
+
+            <input type="text" id="gistIdInput" placeholder="ID do Gist" style="width:100%; padding:10px; margin-bottom:10px; box-sizing: border-box;">
+            <input type="password" id="gistTokenInput" placeholder="GitHub Personal Token" style="width:100%; padding:10px; margin-bottom:10px; box-sizing: border-box;">
+
+            <button class="btn-save" onclick="salvarConfigNuvem()">Salvar Configurações</button>
+            <hr style="margin: 20px 0; border: 0; border-top: 1px solid #ddd;">
+
+            <button class="btn-treino" onclick="uploadParaNuvem()">⬆️ Enviar dados para o GitHub</button>
+            <button class="btn-add" onclick="downloadDaNuvem(true)" style="margin-top: 10px;">⬇️ Baixar dados do GitHub</button>
+       </div> <!-- fecha abaNuvem -->
+    </main>
+</div> <!-- fecha appContainer -->
+<!-- modal etc... -->
+
+    <!-- Modal Treino -->
+    <div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center; z-index: 1000;">
+        <div style="background:white; padding:20px; width:300px; border-radius:12px; text-align:center;">
+            <h3>Data do Treino</h3>
+            <input type="date" id="dataTreino" style="padding:10px; width:100%; box-sizing: border-box;">
+
+            <button style="margin-top:10px; background:#4a57ff; color:white; padding:10px; width:100%; border-radius:10px;" onclick="registrarDataEscolhida()">Registrar</button>
+            <button style="margin-top:10px; background:#aaa; padding:10px; width:100%; border-radius:10px; color: white;" onclick="fecharModal()">Cancelar</button>
+        </div>
+    </div>
+
+    <!-- JavaScript Externo -->
+   <script src="script.js"></script>
+   <script src="composicao.js"></script>
+   <script src="catalogo-treinos.js"></script>
+</body>
+</html>
+
