@@ -368,3 +368,74 @@
 })();
 
 
+const CATALOGO_PROGRAMAS = [
+  {
+    id: "prog_01",
+    titulo: "Adaptação Total & Consciência Corporal",
+    nivel: "iniciante", // iniciante | intermediario | avancado
+    enfase: "neutro",   // feminino | masculino | neutro
+    access_type: "free", // free | premium | personalized
+    frequencia: "2x por semana",
+    divisao: "Corpo Inteiro (Fullbody)",
+    descricao: "Ideal para quem está começando do zero. Foco em aprendizado motor e adaptação articular.",
+    duracao_semanas: 6,
+    trinos: [
+      {
+        letra: "A",
+        nome: "Corpo Inteiro - Base A",
+        exercicios: [
+          { nome: "Agachamento Livre (ou na Cadeira)", series: 3, reps: "12-15", descanso: "60s", obs: "Foco na amplitude e postura." },
+          { nome: "Supino Reto com Halteres", series: 3, reps: "12", descanso: "60s", obs: "Cotovelos a 45 graus." },
+          { nome: "Puxada Frontal Aberta", series: 3, reps: "12-15", descanso: "60s", obs: "Puxar em direção ao peito." },
+          { nome: "Prancha Abdominal Ventral", series: 3, reps: "30s", descanso: "45s", obs: "Manter abdômen e glúteos contraídos." }
+        ]
+      }
+    ]
+  },
+  {
+    id: "prog_05",
+    titulo: "Glúteos & V-Taper (Foco Costas)",
+    nivel: "intermediario",
+    enfase: "feminino",
+    access_type: "free",
+    frequencia: "4x por semana",
+    divisao: "A/B/C/D",
+    descricao: "Desenvolvimento de membros inferiores com ênfase em glúteos e simetria dorsal para cintura fina.",
+    duracao_semanas: 8,
+    treinos: [
+      {
+        letra: "A",
+        nome: "Glúteos & Posteriores",
+        exercicios: [
+          { nome: "Elevação Pélvica com Barra", series: 4, reps: "10-12", descanso: "90s", obs: "Pausa de 2s no topo do movimento." },
+          { nome: "Agachamento Búlgaro", series: 3, reps: "10-12", descanso: "75s", obs: "Tronco levemente inclinado à frente." },
+          { nome: "Stiff com Halteres", series: 4, reps: "10-12", descanso: "75s", obs: "Descida controlada em 3 segundos." },
+          { nome: "Cadeira Abdutora", series: 3, reps: "15", descanso: "60s", obs: "Inclinada levemente para frente." }
+        ]
+      },
+      {
+        letra: "B",
+        nome: "Dorsais, Ombros & Core",
+        exercicios: [
+          { nome: "Puxada Frontal Pegada Aberta", series: 4, reps: "10-12", descanso: "75s", obs: "Deprimir escápulas antes de puxar." },
+          { nome: "Remada Curvada com Barra", series: 3, reps: "10-12", descanso: "75s", obs: "Manter a lombar estável." },
+          { nome: "Desenvolvimento com Halteres", series: 3, reps: "12", descanso: "60s", obs: "Controle na fase cêntrica." },
+          { nome: "Elevação Lateral de Ombros", series: 4, reps: "12-15", descanso: "45s", obs: "Cotovelos levemente flexionados." }
+        ]
+      }
+    ]
+  },
+  {
+    id: "prog_06",
+    titulo: "Hipertrofia Clássica A/B/C/D",
+    nivel: "intermediario",
+    enfase: "masculino",
+    access_type: "premium",
+    frequencia: "4x por semana",
+    divisao: "A/B/C/D",
+    descricao: "Treino focado em volume e ganho de massa muscular estruturado por grupos musculares específicos.",
+    duracao_semanas: 8,
+    treinos: []
+  }
+  // Demais 9 programas seguem a mesma estrutura...
+];

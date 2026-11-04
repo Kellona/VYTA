@@ -265,3 +265,43 @@
     iniciarBiblioteca();
   }
 })();
+
+function renderizarCatalogo(filtro = 'todos') {
+  const container = document.getElementById('grid-programas');
+  container.innerHTML = '';
+
+  const programasFiltrados = CATALOGO_PROGRAMAS.filter(prog => {
+    if (filtro === 'todos') return true;
+    if (filtro === 'free') return prog.access_type === 'free';
+    if (filtro === 'feminino' || filtro === 'masculino') return prog.enfase === filtro;
+    return prog.nivel === filtro;
+  });
+
+  programasFiltrados.forEach(prog => {
+    const isPremium = prog.access_type === 'premium';
+    const badgeClass = isPremium ? 'bg-warning text-dark' : 'bg-success';
+    const badgeText = isPremium ? 'PREMIUM' : 'GRÁTIS';
+
+    const cardHTML = `
+      <div class="col">
+        <div class="card h-100 shadow-sm border-0 position-relative">
+          <span class="position-absolute top-0 end-0 m-2 badge ${badgeClass}">
+            ${badgeText}
+          </span>
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title fw-bold">${prog.titulo}</h5>
+            <div class="mb-2">
+              <span class="badge bg-secondary">${prog.nivel.toUpperCase()}</span>
+              <span class="badge bg-info text-dark">${prog.frequencia}</span>
+            </div>
+            <p class="card-text text-muted flex-grow-1">${prog.descricao}</p>
+            <button class="btn btn-primary w-100 mt-2" onclick="abrirDetalhesPrograma('${prog.id}')">
+              ${isPremium ? 'Ver Programa (Premium)' : 'Explorar & Adicionar'}
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+    container.innerHTML += cardHTML;
+  });
+}
