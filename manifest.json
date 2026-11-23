@@ -1,0 +1,19 @@
+{
+  "name": "VYTA — Saúde, Treino e Evolução",
+  "short_name": "VYTA",
+  "description": "Sua evolução em movimento. Saúde, treino e evolução corporal em um só lugar.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#090826",
+  "theme_color": "#090826",
+  "orientation": "portrait-primary",
+  "categories": ["health", "fitness", "lifestyle"],
+  "icons": [
+    {
+      "src": "logo-vyta.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}
