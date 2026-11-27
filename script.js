@@ -992,4 +992,45 @@
       console.error("Erro ao excluir medição:", erro);
       alert("Não foi possível excluir a medição.");
     }
-  }
+  }window.importarTudoDoFitness = function () {
+    // Mapa das chaves antigas do app Fitness para as chaves do VYTA
+    const mapa = {
+      "fitness_perfil": "vyta_perfil",
+      "perfil": "vyta_perfil",
+      "fitness_treinos": "vyta_treinos",
+      "treinos": "vyta_treinos",
+      "fitness_historico": "vyta_historico_treinos",
+      "historicoTreinos": "vyta_historico_treinos",
+      "fitness_pesos": "vyta_pesos",
+      "pesos": "vyta_pesos",
+      "fitness_medidas": "vyta_medidas",
+      "medidas": "vyta_medidas",
+      "fitness_injecoes": "vyta_injecoes",
+      "injecoes": "vyta_injecoes",
+      "fitness_avaliacoes": "vyta_avaliacoes",
+      "avaliacoes": "vyta_avaliacoes"
+    };
+  
+    let copiados = 0;
+  
+    for (const [chaveAntiga, chaveNova] of Object.entries(mapa)) {
+      const dados = localStorage.getItem(chaveAntiga);
+      if (dados && dados !== "[]" && dados !== "{}") {
+        localStorage.setItem(chaveNova, dados);
+        copiados++;
+      }
+    }
+  
+    if (copiados > 0) {
+      alert(`Pronto! ${copiados} registros do Fitness foram trazidos para o VYTA.`);
+      location.reload();
+    } else {
+      // Mostra os nomes exatos das chaves do Fitness caso tenham outro prefixo
+      const outrasChaves = Object.keys(localStorage).filter(k => !k.startsWith("vyta_"));
+      alert(
+        outrasChaves.length
+          ? "Encontrei estas chaves no seu aparelho:\n\n" + outrasChaves.join("\n") + "\n\nMe envie esses nomes para ajustarmos o vínculo."
+          : "Nenhum dado do app Fitness encontrado neste navegador. Abra o VYTA no mesmo navegador/celular onde você usa o Fitness."
+      );
+    }
+  };
